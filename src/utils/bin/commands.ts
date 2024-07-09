@@ -4,6 +4,7 @@ import * as bin from './index';
 import config from '../../../config.json';
 import data from '../../../public/contract.json'
 const contractaddressis = data.contract;
+const telegramaddress = data.telegram;
 // Help
 export const help = async (args: string[]): Promise<string> => {
   const commands = Object.keys(bin).sort().join(', ');
@@ -32,13 +33,13 @@ export const website = async (args: string[]): Promise<string> => {
 };
 
 export const tg = async (args: string[]): Promise<string> => {
-  window.open(`https://t.me/pepenator_eth`);
+  window.open(`${telegramaddress}`);
 
   return 'Opening Telegram...';
 };
 
 export const x = async (args: string[]): Promise<string> => {
-  window.open(`x.com/pepenator_eth`);
+  window.open(`https://x.com/PepenatorEth`);
 
   return 'Opening Twitter...';
 };
