@@ -14,144 +14,148 @@ export const help = async (args: string[]): Promise<string> => {
       c += Object.keys(bin).sort()[i - 1] + ' ';
     }
   }
-  return `Welcome! Here are all the available commands:
+  return `Hello PEPENATS! Below are the available commands
 \n${c}\n
 [tab]: trigger completion.
 [ctrl+l]/clear: clear terminal.\n
-Type 'sumfetch' to display summary.
 `;
-};
-
-// Redirection
-export const repo = async (args: string[]): Promise<string> => {
-  window.open(`${config.repo}`);
-  return 'Opening Github repository...';
 };
 
 // About
 export const about = async (args: string[]): Promise<string> => {
-  return `Hi, I am ${config.name}. 
-Welcome to my website!
-More about me:
-'sumfetch' - short summary.
-'resume' - my latest resume.
-'readme' - my github readme.`;
+  return `Pepenator: The Ultimate Fusion of Pepe and Terminator`;
+};
+export const website = async (args: string[]): Promise<string> => {
+  window.open(`https://website.pepenator.net`);
+  return `Opening website`;
 };
 
-export const resume = async (args: string[]): Promise<string> => {
-  window.open(`${config.resume_url}`);
-  return 'Opening resume...';
+export const tg = async (args: string[]): Promise<string> => {
+  window.open(`https://t.me/pepenator_eth`);
+
+  return 'Opening Telegram...';
 };
 
-// Donate
-export const donate = async (args: string[]): Promise<string> => {
-  return `thank you for your interest. 
-here are the ways you can support my work:
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.paypal}" target="_blank">paypal</a></u>
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.patreon}" target="_blank">patreon</a></u>
-`;
+export const x = async (args: string[]): Promise<string> => {
+  window.open(`x.com/pepenator_eth`);
+
+  return 'Opening Twitter...';
+};
+
+export const ca = async (args: string[]): Promise<string> => {
+  return `0x00000000000000000000000`;
 };
 
 // Contact
-export const email = async (args: string[]): Promise<string> => {
-  window.open(`mailto:${config.email}`);
-  return `Opening mailto:${config.email}...`;
+// export const email = async (args: string[]): Promise<string> => {
+//   // window.open(`mailto:${config.email}`);
+//   return `Mail : ${config.email}`;
+// };
+
+export const claimairdrop = async (args: string[]): Promise<string> => {
+  window.open(`https://www.youtube.com/watch?v=dQw4w9WgXcQ`);
+  return `Claiming`;
 };
 
-export const github = async (args: string[]): Promise<string> => {
-  window.open(`https://github.com/${config.social.github}/`);
 
-  return 'Opening github...';
+
+export const contract = async (args: string[]): Promise<string> => {
+  return `Contract Address is  0x0000000000000000000000 `;
 };
 
-export const linkedin = async (args: string[]): Promise<string> => {
-  window.open(`https://www.linkedin.com/in/${config.social.linkedin}/`);
 
-  return 'Opening linkedin...';
+// export const stats = async (args: string[]): Promise<string> => {
+//   const apiUrl = 'https://api.example.com/data';
+//   fetch(apiUrl)
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+//     const result = response.json();
+//   })
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
+  
+//   return `Contract Address is  0x0000000000000000000000 `;
+// };
+export const stats = async (args: string[]): Promise<string> => {
+  const apiUrl = 'https://api.dexscreener.com/latest/dex/tokens/0x6c46422a0f7dbbad9bec3bbbc1189bfaf9794b05';
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const responseData = await response.json();
+    const pairs = responseData.pairs;
+
+    // Extracting fdv values from each pair
+    const fdvValues = pairs.map(pair => pair.fdv);
+
+    // Formatting fdv values as a string
+    const fdvString = fdvValues[0];
+    const volvalues = pairs.map(pair => pair.volume);
+
+    // Formatting fdv values as a string
+    const Volume = volvalues[0]['h24'];
+    // console.log(data);
+    return `Stats
+    MarketCap: $${JSON.stringify(fdvString)}
+    Volume: $${JSON.stringify(Volume)}
+    `;
+  } catch (error) {
+    console.error('Error:', error);
+    return `No Token stats available`;
+  }
 };
 
-// Search
-export const google = async (args: string[]): Promise<string> => {
-  window.open(`https://google.com/search?q=${args.join(' ')}`);
-  return `Searching google for ${args.join(' ')}...`;
-};
 
-export const duckduckgo = async (args: string[]): Promise<string> => {
-  window.open(`https://duckduckgo.com/?q=${args.join(' ')}`);
-  return `Searching duckduckgo for ${args.join(' ')}...`;
-};
 
-export const bing = async (args: string[]): Promise<string> => {
-  window.open(`https://bing.com/search?q=${args.join(' ')}`);
-  return `Wow, really? You are using bing for ${args.join(' ')}?`;
-};
-
-export const reddit = async (args: string[]): Promise<string> => {
-  window.open(`https://www.reddit.com/search/?q=${args.join(' ')}`);
-  return `Searching reddit for ${args.join(' ')}...`;
+export const etherscan = async (args: string[]): Promise<string> => {
+  window.open(`https://etherscan.io/token/0x0000000000000000000`);
+  return `Opening etherscan... `;
 };
 
 // Typical linux commands
-export const echo = async (args: string[]): Promise<string> => {
-  return args.join(' ');
-};
+// export const echo = async (args: string[]): Promise<string> => {
+//   return args.join(' ');
+// };
 
-export const whoami = async (args: string[]): Promise<string> => {
-  return `${config.ps1_username}`;
-};
+// export const whoami = async (args: string[]): Promise<string> => {
+//   return `${config.ps1_username} Babbage`;
+// };
 
-export const ls = async (args: string[]): Promise<string> => {
-  return `a
-bunch
-of
-fake
-directories`;
-};
+// export const date = async (args: string[]): Promise<string> => {
+//   return `Today's Date is: ${new Date().toString()}`;
+// };
 
-export const cd = async (args: string[]): Promise<string> => {
-  return `unfortunately, i cannot afford more directories.
-if you want to help, you can type 'donate'.`;
-};
+// export const age = async (args: string[]): Promise<string> => {
+//   const september1964 = new Date('1964-09-01');
+//   const currentDate = new Date();
 
-export const date = async (args: string[]): Promise<string> => {
-  return new Date().toString();
-};
+//   const timeDifference = currentDate.getTime() - september1964.getTime();
+//   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-export const vi = async (args: string[]): Promise<string> => {
-  return `woah, you still use 'vi'? just try 'vim'.`;
-};
-
-export const vim = async (args: string[]): Promise<string> => {
-  return `'vim' is so outdated. how about 'nvim'?`;
-};
-
-export const nvim = async (args: string[]): Promise<string> => {
-  return `'nvim'? too fancy. why not 'emacs'?`;
-};
-
-export const emacs = async (args?: string[]): Promise<string> => {
-  return `you know what? just use vscode.`;
-};
-
-export const sudo = async (args?: string[]): Promise<string> => {
-  window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank'); // ...I'm sorry
-  return `Permission denied: with little power comes... no responsibility? `;
-};
-
+//   return `My age is ${daysDifference} days.`;
+// };
+// ██████╗██████╗  ██████╗         ██████╗  ██████╗  ██████╗  ██████╗ 
+// ██╔════╝██╔══██╗██╔════╝        ██╔════╝ ██╔════╝ ██╔═████╗██╔═████╗
+// ██║     ██║  ██║██║       █████╗███████╗ ███████╗ ██║██╔██║██║██╔██║
+// ██║     ██║  ██║██║       ╚════╝██╔═══██╗██╔═══██╗████╔╝██║████╔╝██║
+// ╚██████╗██████╔╝╚██████╗        ╚██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝
+//  ╚═════╝╚═════╝  ╚═════╝         ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ 
 // Banner
-export const banner = (args?: string[]): string => {
-  return `
-█████        ███                       ███████████                                   
-░░███        ░░░                       ░█░░░███░░░█                                   
- ░███        ████  █████ █████  ██████ ░   ░███  ░   ██████  ████████  █████████████  
- ░███       ░░███ ░░███ ░░███  ███░░███    ░███     ███░░███░░███░░███░░███░░███░░███ 
- ░███        ░███  ░███  ░███ ░███████     ░███    ░███████  ░███ ░░░  ░███ ░███ ░███ 
- ░███      █ ░███  ░░███ ███  ░███░░░      ░███    ░███░░░   ░███      ░███ ░███ ░███ 
- ███████████ █████  ░░█████   ░░██████     █████   ░░██████  █████     █████░███ █████
-░░░░░░░░░░░ ░░░░░    ░░░░░     ░░░░░░     ░░░░░     ░░░░░░  ░░░░░     ░░░░░ ░░░ ░░░░░ 
+export const home = (args?: string[]): string => {
+  return `  
+░█▀█░█▀▀░█▀█░█▀▀░█▀█░█▀█░▀█▀░█▀█░█▀▄
+░█▀▀░█▀▀░█▀▀░█▀▀░█░█░█▀█░░█░░█░█░█▀▄
+░▀░░░▀▀▀░▀░░░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀░▀                   
+Contract : 0x000000000000000000000000
+Telegram : https://t.me/pepenator_eth
 
 Type 'help' to see the list of available commands.
-Type 'sumfetch' to display summary.
-Type 'repo' or click <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.repo}" target="_blank">here</a></u> for the Github repository.
 `;
 };
