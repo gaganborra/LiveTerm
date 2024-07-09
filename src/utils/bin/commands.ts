@@ -2,7 +2,8 @@
 
 import * as bin from './index';
 import config from '../../../config.json';
-
+import data from '../../../public/contract.json'
+const contractaddressis = data.contract;
 // Help
 export const help = async (args: string[]): Promise<string> => {
   const commands = Object.keys(bin).sort().join(', ');
@@ -43,7 +44,7 @@ export const x = async (args: string[]): Promise<string> => {
 };
 
 export const ca = async (args: string[]): Promise<string> => {
-  return `0x00000000000000000000000`;
+  return contractaddressis;
 };
 
 // Contact
@@ -60,7 +61,7 @@ export const claimairdrop = async (args: string[]): Promise<string> => {
 
 
 export const contract = async (args: string[]): Promise<string> => {
-  return `Contract Address is  0x0000000000000000000000 `;
+  return `Contract Address is ${contractaddressis} `;
 };
 
 
@@ -83,7 +84,8 @@ export const contract = async (args: string[]): Promise<string> => {
 //   return `Contract Address is  0x0000000000000000000000 `;
 // };
 export const stats = async (args: string[]): Promise<string> => {
-  const apiUrl = 'https://api.dexscreener.com/latest/dex/tokens/0x6c46422a0f7dbbad9bec3bbbc1189bfaf9794b05';
+  const apiUrl = `https://api.dexscreener.com/latest/dex/tokens/${contractaddressis}`;
+  console.log(apiUrl)
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
@@ -115,7 +117,7 @@ export const stats = async (args: string[]): Promise<string> => {
 
 
 export const etherscan = async (args: string[]): Promise<string> => {
-  window.open(`https://etherscan.io/token/0x0000000000000000000`);
+  window.open(`https://etherscan.io/token/${contractaddressis}`);
   return `Opening etherscan... `;
 };
 
@@ -153,7 +155,7 @@ export const home = (args?: string[]): string => {
 ░█▀█░█▀▀░█▀█░█▀▀░█▀█░█▀█░▀█▀░█▀█░█▀▄
 ░█▀▀░█▀▀░█▀▀░█▀▀░█░█░█▀█░░█░░█░█░█▀▄
 ░▀░░░▀▀▀░▀░░░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀░▀                   
-Contract : 0x000000000000000000000000
+Contract : ${contractaddressis}
 Telegram : https://t.me/pepenator_eth
 
 Type 'help' to see the list of available commands.
